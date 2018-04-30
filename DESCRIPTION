@@ -1,0 +1,15 @@
+Package: Rbigstream
+Imports:
+  jsonlite,
+  RCurl  
+Type: Package
+Title: Bigstream API for R
+Version: 0.1.0
+Author: Krit Punpreuk [aut,cre]
+Maintainer: Krit Punpreuk <gogogokrit@gmail.com>
+Description: Bigstream wrapper for R
+    Get and push data to Bigstream platform via Storage API.
+License: GPL
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
