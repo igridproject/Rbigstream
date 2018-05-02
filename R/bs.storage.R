@@ -4,11 +4,18 @@
 #' @export
 storage.list <- local(
   function(conn = NULL) {
+    url <- ""
     if(!is.null(conn))
-      jsonlite::read_json(conn,simplifyVector = TRUE)
-    if(is.null(bs.active.url))
-      stop(bs.no.url)
-    jsonlite::read_json(bs.active.url,simplifyVector = TRUE)
+      url <- conn
+    else {
+      if(is.null(bs.active.url))
+        stop(bs.no.url)
+      url <- bs.active.url
+    }
+    if(!RCurl::url.exists(url))
+      stop("Cannot connnect to Bigstream via ", url)
+    cat("call Bigstreram API -> ",url,"\n")
+    jsonlite::read_json(url,simplifyVector = TRUE)
   }
 , env = BS.env)
 
@@ -24,6 +31,8 @@ storage.stat <- local(
     if(is.null(bs.active.url))
       stop(bs.no.url)
     bs.active.url <- paste(bs.active.url, storage_name, "stats",sep = "/")
+    if(!RCurl::url.exists(bs.active.url))
+      stop("Cannot connnect to Bigstream via ", url)
     jsonlite::read_json(bs.active.url,simplifyVector = TRUE)
   }
 , env = BS.env)
@@ -62,12 +71,10 @@ storage.read <- local(
       param.combine <- add_param(NULL , from, limit, last, field)
     }
 
-    data.url <- paste(data.url,param.combine,sep = "?")
-    cat("call API ")
-    cat(data.url)
-    cat("\n")
-    if(!url.exists(data.url))
+    data.url <- paste(data.url, param.combine, sep = "?")
+    if(!RCurl::url.exists(data.url))
       stop("Cannot connnect to Bigstream via ", data.url)
+    cat("call Bigstreram API -> ",data.url,"\n")
     data.list <- jsonlite::read_json(data.url, simplifyVector = TRUE)
     stopifnot(is.data.frame(data.list))
     jsonlite::flatten(data.list)
@@ -84,11 +91,9 @@ storage.get <- local(
     data.url <- paste(bs.url, "v1/object" ,storage.name, sep = "/")
     data.url <- paste(data.url, id, sep = ".")
 
-    cat("call API ")
-    cat(data.url)
-    cat("\n")
-    if(!url.exists(data.url))
+    if(!RCurl::url.exists(data.url))
       stop("Cannot connnect to Bigstream via ", data.url)
+    cat("call Bigstreram API -> ",data.url,"\n")
     data.list <- jsonlite::read_json(data.url, simplifyVector = TRUE)
   }
 , env = BS.env)
