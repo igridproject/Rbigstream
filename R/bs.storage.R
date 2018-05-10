@@ -65,10 +65,10 @@ storage.read <- local(
     if(!is.numeric(last) || !is.numeric(limit))
       stop("last or limit param must be integer.")
 
-    if(is.numeric(from)) {
+    if(is.null(offset)) {
       param.combine <- add_param(from , offset, limit, last, field)
     } else {
-      param.combine <- add_param(NULL , from, limit, last, field)
+      param.combine <- add_param(NULL , offset, limit, last, field)
     }
 
     data.url <- paste(data.url, param.combine, sep = "?")
