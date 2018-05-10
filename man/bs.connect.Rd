@@ -22,7 +22,7 @@ connection setting
 Setup Bigstream connector function
 }
 \examples{
-host <- "http://bigmaster.igridproject.info"
+host <- "http://sample.bigstream.io"
 port <- 19080
 storage_name <- "sample.sensordata"
 token <- "token"

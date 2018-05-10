@@ -1,6 +1,23 @@
 # -------------------------------------------------------------------------------------------
 # list all storages of default connection / given connection.
 
+#' Show storage list
+#'
+#' @param conn Bigstream connection (No need if already call bs.connect() )
+#'
+#' @return Storage list in give Bigstream connection
+#'
+#' @examples
+#' host <- "http://sample.bigstream.io"
+#' port <- 19080
+#' storage_name <- "sample.sensordata"
+#' token <- "token"
+#' conn <- bs.connect(host, port, token)
+#' storage.list()
+#'
+#' or
+#'
+#' storage.list(conn)
 #' @export
 storage.list <- local(
   function(conn = NULL) {
