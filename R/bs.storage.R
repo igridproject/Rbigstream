@@ -36,12 +36,19 @@ storage.list <- local(
   }
 , env = BS.env)
 
-# -------------------------------------------------------------------------------------------
-# count number of data in a particular storage.
-# stat <- storage.stat(storage_name)
-# stat$count
-# stat$size
-
+#' Get storage information
+#'
+#' @param storage_name storage name
+#'
+#' @return Storage information
+#'
+#' @examples
+#' host <- "http://sample.bigstream.io"
+#' port <- 19080
+#' storage_name <- "sample.sensordata"
+#' token <- "token"
+#' conn <- bs.connect(host, port, token)
+#' storage.stat(storage_name)
 #' @export
 storage.stat <- local(
   function(storage_name) {
@@ -62,6 +69,26 @@ storage.stat <- local(
 # date refer to written timestamp on bs
 # df <- storage.read(storage_name, dateopt="delivery|written", startdate="2018-01-01", enddate="2018-01-31")
 
+#' Get data object from storage
+#' @description
+#' read data from Bigstream storage via Bigstream storage API
+#'
+#' @param storage.name storage name
+#' @param field Specify object output "id","meta" or "data"
+#' @param from start from object index default is 1
+#' @param offset Lookup data after given object id
+#' @param last number of lastest data to read (overwrite "from" arguments)
+#' @param limit limit object outout
+#' @param date_opt optional
+#' @return data from Bigstream storage
+#'
+#' @examples
+#' host <- "http://sample.bigstream.io"
+#' port <- 19080
+#' storage_name <- "sample.sensordata"
+#' token <- "token"
+#' conn <- bs.connect(host, port, token)
+#' storage.read(storage_name)
 #' @export
 storage.read <- local(
   function(storage.name,
@@ -134,7 +161,14 @@ add_param <- function(from, offset, limit, last, field) {
   param.combine <- paste(param.from, param.offset, param.limit, param.last, param.field,sep = "&")
 }
 
-# bsstat <- function() { statlist<-data.frame() ;for(name in storage.list()) { tmp = storage.stat(name) ; statlist <- rbind(as.data.frame(tmp),statlist)} ; statlist[order(statlist[,1])] }
+# bsstat <- function() {
+#   statlist<-data.frame()
+#   for(name in storage.list()) {
+#     tmp = storage.stat(name)
+#     statlist <- rbind(as.data.frame(tmp),statlist)
+#   }
+#   return(statlist)
+# }
 
 #new implement
 # con <- curl::curl("http://handf.lsr.nectec.or.th:19080/v1/storage/test.mwa.S4/objects?limit=10000&output=stream")
