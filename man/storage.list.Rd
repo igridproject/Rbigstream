@@ -13,7 +13,7 @@ storage.list(conn = NULL)
 Storage list in give Bigstream connection
 }
 \description{
-Show storage list
+Given storage list from current connection setup or given connection
 }
 \examples{
 host <- "http://sample.bigstream.io"
