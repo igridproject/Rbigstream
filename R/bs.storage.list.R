@@ -1,6 +1,3 @@
-# -------------------------------------------------------------------------------------------
-# list all storages of default connection / given connection.
-
 #' Show storage list
 #' @description
 #' Given storage list from current connection setup or given connection

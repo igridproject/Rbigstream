@@ -1,10 +1,3 @@
-# -------------------------------------------------------------------------------------------
-# from / limit param api example http://handf.lsr.nectec.or.th:19080/v1/storage/test.mwa.S1/objects?from=9&limit=10&field=data
-# df <- storage.read(storage_name, field="id|meta|data", from=1, limit=10, by="seq|date|id")
-
-# date refer to written timestamp on bs
-# df <- storage.read(storage_name, dateopt="delivery|written", startdate="2018-01-01", enddate="2018-01-31")
-
 #' Get data object from storage
 #' @description
 #' read data from Bigstream storage via Bigstream storage API
