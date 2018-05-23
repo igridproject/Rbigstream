@@ -2,7 +2,7 @@
 #' @description
 #' Given storage list from current connection setup or given connection
 #'
-#' @param conn Bigstream connection (No need if already call bs.connect() )
+#' @param conn Bigstream connection (if does not call bs.connect() function first)
 #'
 #' @return Storage list in give Bigstream connection
 #'

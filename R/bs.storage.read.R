@@ -7,8 +7,8 @@
 #' @param from start from object index default is 1
 #' @param offset Lookup data after given object id
 #' @param last number of lastest data to read (overwrite "from" arguments)
-#' @param limit limit object outout
-#' @param date_opt optional
+#' @param limit limit object output
+#' @param date_opt optional (TBA)
 #' @return data from Bigstream storage
 #'
 #' @examples
