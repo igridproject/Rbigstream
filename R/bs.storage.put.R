@@ -15,6 +15,7 @@
 
 storage.put <- local(
   function(storage_name,x) {
+    if(!is.data.frame(x)) stop("x must be data frame type")
 
     # This function need API version 1.1 or more
     if(is.null(bs.active.url.v1.1))
