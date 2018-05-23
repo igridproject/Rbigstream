@@ -9,6 +9,7 @@ local({
   bs.v1.path <- "v1/storage"
   bs.v1.1.path <- "v1.1/storage"
   bs.active.url <- NULL
+  bs.active.url.v1.1 <- NULL
   bs.url <- NULL
   bs.storage.name <- NULL
   object.path <- "objects"
@@ -41,7 +42,9 @@ bs.connect <- local(
     }
     bs.active.url <<- paste(host, port, sep = ":")
     bs.url <<- paste(host, port, sep = ":")
+    bs.active.url.v1.1 <<- paste(bs.active.url, bs.v1.1.path , sep = "/")
     bs.active.url <<- paste(bs.active.url, bs.v1.path, sep = "/")
+
     if(!(is.null(storage_name)))
       bs.storage.name <<- storage_name
     cat("Set up Bigstream host to ")

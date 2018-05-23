@@ -18,7 +18,7 @@ storage.stat <- local(
       stop(bs.no.url)
     bs.active.url <- paste(bs.active.url, storage_name, "stats",sep = "/")
     if(!RCurl::url.exists(bs.active.url))
-      stop("Cannot connnect to Bigstream via ", url)
+      stop("Cannot connnect to Bigstream via ", bs.active.url)
     jsonlite::read_json(bs.active.url,simplifyVector = TRUE)
   }
 , env = BS.env)
