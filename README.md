@@ -1,10 +1,10 @@
 # Rbigstream
 R package for easy call BigStream API.
-
+[updated 2018-05-24]
 
 
 ## Rbigstream package installation
-update 24/May/2018
+
 
 * install devtools 
 ```{r}
