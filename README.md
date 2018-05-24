@@ -13,7 +13,7 @@ install.packages("devtools")
 
 * install lastest version Rbigstream from github
 ```{r}
-devtools::install_git("https://github.com/igridproject/Rbigstream")
+devtools::install_github("igridproject/Rbigstream")
 ```
 
 ## Help document
