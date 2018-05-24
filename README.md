@@ -3,7 +3,7 @@ R package for easy call BigStream API.
 [updated 2018-05-24]
 
 
-## Rbigstream package installation
+## Package installation
 
 
 * install devtools 
@@ -16,7 +16,7 @@ install.packages("devtools")
 devtools::install_github("igridproject/Rbigstream")
 ```
 
-## Help document
+## Function Help
 ```{r}
 library(Rbigstream)
 ?bs.connect
