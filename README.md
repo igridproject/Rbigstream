@@ -1,5 +1,5 @@
 # Rbigstream
-R package for easy call BigStream API.
+BigStream Control ,Storage and Virtual Repository Interface for R
 [updated 2018-05-24]
 
 
