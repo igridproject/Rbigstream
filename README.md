@@ -18,7 +18,11 @@ devtools::install_github("igridproject/Rbigstream")
 
 ## Help document
 ```{r}
-require(Rbigstream)
+library(Rbigstream)
 ?bs.connect
+?storage.list
+?storage.get
+?storage.read
+?storage.put
 ```
 have fun
