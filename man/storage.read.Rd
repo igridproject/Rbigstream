@@ -18,9 +18,9 @@ storage.read(storage.name, field = c("data", "id", "meta"), from = 1,
 
 \item{last}{number of lastest data to read (overwrite "from" arguments)}
 
-\item{limit}{limit object outout}
+\item{limit}{limit object output}
 
-\item{date_opt}{optional}
+\item{date_opt}{optional (TBA)}
 }
 \value{
 data from Bigstream storage

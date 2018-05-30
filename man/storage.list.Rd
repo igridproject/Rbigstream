@@ -7,7 +7,7 @@
 storage.list(conn = NULL)
 }
 \arguments{
-\item{conn}{Bigstream connection (No need if already call bs.connect() )}
+\item{conn}{Bigstream connection (if does not call bs.connect() function first)}
 }
 \value{
 Storage list in give Bigstream connection

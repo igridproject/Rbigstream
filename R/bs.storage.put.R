@@ -19,7 +19,7 @@ storage.put <- local(
 
     # This function need API version 1.1 or more
     if(is.null(bs.active.url.v1.1))
-      stop(bs.no.url)
+      stop(bs.active.url.v1.1)
     bs.active.url <- paste(bs.active.url.v1.1, storage_name,sep = "/")
     # if(!RCurl::url.exists(bs.active.url))
     #  stop("Cannot connnect to Bigstream via ", bs.active.url, " or current bigstream version does not support storage.put command")
@@ -51,7 +51,7 @@ storage.put <- local(
 
     object <- jsonlite::fromJSON(json)
     if(object=="OK")
-      cat("Put data successfully.\n")
+      cat("Completed.\n")
   }
   , env = BS.env)
 
