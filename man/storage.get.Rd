@@ -4,18 +4,23 @@
 \alias{storage.get}
 \title{Get data object from storage}
 \usage{
-storage.get(storage.name, id)
+storage.get(storage.name, id = NULL, index = NULL, key = NULL)
 }
 \arguments{
 \item{storage.name}{storage name}
 
 \item{id}{Object id}
+
+\item{index}{get data by index}
+
+\item{key}{get data by defined key  in storage}
 }
 \value{
-data from Bigstream storage
+data from Bigstream storage. Return lastest data if no id, index or key param
 }
 \description{
 read data from Bigstream storage via Bigstream storage API
+This command support on Bigstream version 1.2 or more only
 }
 \examples{
 host <- "http://sample.bigstream.io"
@@ -23,5 +28,16 @@ port <- 19080
 storage_name <- "sample.sensordata"
 token <- "token"
 conn <- bs.connect(host, port, token)
+
+#return lastest data
+storage.get(storage_name)
+
+# return data object 010000000000000258107ea7
 storage.get(storage_name,id="010000000000000258107ea7")
+
+# return data index 1 (1st data in storage)
+storage.get(storage_name,index=1)
+
+# return data by key defined
+storage.get(storage_name,key="")
 }

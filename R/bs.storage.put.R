@@ -15,8 +15,6 @@
 
 storage.put <- local(
   function(storage_name,x) {
-    if(!is.data.frame(x)) stop("x must be data frame type")
-
     # This function need API version 1.1 or more
     if(is.null(bs.active.url.v1.1))
       stop(bs.active.url.v1.1)
@@ -24,24 +22,30 @@ storage.put <- local(
     # if(!RCurl::url.exists(bs.active.url))
     #  stop("Cannot connnect to Bigstream via ", bs.active.url, " or current bigstream version does not support storage.put command")
 
+
     .meta_list <- list("User-Agent" = "Rbigstream" ,  version="0.1", timestamp = as.integer(as.POSIXct(Sys.time())))
     meta <- list(meta = .meta_list)
 
-    # eg. body <- '{ "meta":{ "Rbigstream-version":"0.1","User-Agent":"Rbigstream" } , "data": { "name":"krit002"}   }'
-    .body <- ""
-    for(row in 1:nrow(x)){
-      .tmp <- as.list(t(x)[,row])
-      names(.tmp) <- colnames(x)
-      .data <- list(.tmp)
-      .object <- c(meta,data=.data)
-      .body <- paste(.body,jsonlite::toJSON(.object,auto_unbox = TRUE), sep=",")
+    if(is.data.frame(x)) { #stop("x must be data frame type")
+      # eg. body <- '{ "meta":{ "Rbigstream-version":"0.1","User-Agent":"Rbigstream" } , "data": { "name":"krit002"}   }'
+      .body <- ""
+      for(row in 1:nrow(x)){
+        .tmp <- as.list(t(x)[,row])
+        names(.tmp) <- colnames(x)
+        .data <- list(.tmp)
+        .object <- c(meta,data=.data)
+        .body <- paste(.body,jsonlite::toJSON(.object,auto_unbox = TRUE), sep=",")
+      }
+      rm(.data)
+      rm(.object)
+
+      .body <- substring(.body,2)
+      .body <- paste("[",.body,"]",sep = "")
+    } else {
+      .body <- ""
+      .body <- c(meta,list(data=x))
+      .body <- jsonlite::toJSON(.body ,auto_unbox = TRUE)
     }
-    rm(.data)
-    rm(.object)
-
-    .body <- substring(.body,2)
-    .body <- paste("[",.body,"]",sep = "")
-
     if(!jsonlite::validate(.body)) stop()
     req <- httr::PUT(bs.active.url,
                body = .body ,
