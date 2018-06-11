@@ -9,14 +9,14 @@
 #' @param last number of lastest data to read (overwrite "from" arguments)
 #' @param limit limit object output
 #' @param date_opt optional (TBA)
+#' @param flatten flatten option in jsonlite
 #' @return data from Bigstream storage
 #'
 #' @examples
 #' host <- "http://sample.bigstream.io"
-#' port <- 19080
 #' storage_name <- "sample.sensordata"
 #' token <- "token"
-#' conn <- bs.connect(host, port, token)
+#' conn <- bs.connect(host, storage_name, token)
 #' storage.read(storage_name)
 #' @export
 storage.read <- local(
@@ -26,7 +26,8 @@ storage.read <- local(
            offset = NULL,
            last = 0,
            limit = 10,
-           date_opt = NULL) {
+           date_opt = NULL,
+           flatten = TRUE) {
     if(is.null(bs.active.url))
       stop(bs.no.url)
 
@@ -48,9 +49,12 @@ storage.read <- local(
     if(!RCurl::url.exists(data.url))
       stop("Cannot connnect to Bigstream via ", data.url)
     cat("call Bigstreram API -> ",data.url,"\n")
-    data.list <- jsonlite::read_json(data.url, simplifyVector = TRUE)
-    stopifnot(is.data.frame(data.list))
-    jsonlite::flatten(data.list)
+    data.list <- jsonlite::read_json(data.url, simplifyVector = flatten)
+    # stopifnot(is.data.frame(data.list))
+    if(flatten){
+      data.list <- jsonlite::flatten(data.list)
+    }
+    data.list
   }
 , env = BS.env)
 

@@ -17,10 +17,9 @@ Given storage list from current connection setup or given connection
 }
 \examples{
 host <- "http://sample.bigstream.io"
-port <- 19080
 storage_name <- "sample.sensordata"
 token <- "token"
-conn <- bs.connect(host, port, token)
+conn <- bs.connect(host, storage_name, token)
 storage.list()
 
 or

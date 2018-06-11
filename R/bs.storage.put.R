@@ -6,21 +6,20 @@
 #'
 #' @examples
 #' host <- "http://sample.bigstream.io"
-#' port <- 19080
 #' storage_name <- "sample.sensordata"
 #' token <- "token"
-#' conn <- bs.connect(host, port, token)
+#' conn <- bs.connect(host, storage_name, token)
 #' storage.put(storage_name,x)
 #' @export
 
 storage.put <- local(
   function(storage_name,x) {
     # This function need API version 1.1 or more
-    if(is.null(bs.active.url.v1.1))
-      stop(bs.active.url.v1.1)
-    bs.active.url <- paste(bs.active.url.v1.1, storage_name,sep = "/")
-    # if(!RCurl::url.exists(bs.active.url))
-    #  stop("Cannot connnect to Bigstream via ", bs.active.url, " or current bigstream version does not support storage.put command")
+    if(is.null(bs.active.url))
+      stop(bs.active.url)
+    url <- paste(bs.active.url, storage_name,sep = "/")
+    # if(!RCurl::url.exists(url))
+    #  stop("Cannot connnect to Bigstream via ", url , " or current bigstream version does not support storage.put command")
 
 
     .meta_list <- list("User-Agent" = "Rbigstream" ,  version="0.1", timestamp = as.integer(as.POSIXct(Sys.time())))
@@ -47,15 +46,15 @@ storage.put <- local(
       .body <- jsonlite::toJSON(.body ,auto_unbox = TRUE)
     }
     if(!jsonlite::validate(.body)) stop()
-    req <- httr::PUT(bs.active.url,
+    req <- httr::PUT(url,
                body = .body ,
                httr::add_headers(.headers = c("Content-Type"="application/json","User-Agent"="Rbigstream")))
-    httr::stop_for_status(req,paste("Cannot connnect to Bigstream via ", bs.active.url, " or current bigstream version does not support storage.put command"))
+    httr::stop_for_status(req,paste("Cannot put data to Bigstream via ", url, " or current bigstream version does not support storage.put command"))
     json <- httr::content(req, "text")
 
     object <- jsonlite::fromJSON(json)
     if(object=="OK")
-      cat("Completed.\n")
+      cat("Put data to ", url ,"Completed.\n")
   }
   , env = BS.env)
 

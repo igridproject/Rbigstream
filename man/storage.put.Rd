@@ -19,9 +19,8 @@ Put data to storage
 }
 \examples{
 host <- "http://sample.bigstream.io"
-port <- 19080
 storage_name <- "sample.sensordata"
 token <- "token"
-conn <- bs.connect(host, port, token)
+conn <- bs.connect(host, storage_name, token)
 storage.put(storage_name,x)
 }

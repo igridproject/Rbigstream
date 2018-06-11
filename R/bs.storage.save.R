@@ -8,11 +8,9 @@
 #'
 #' @examples
 #' host <- "http://sample.bigstream.io"
-#' port <- 19080
 #' storage_name <- "sample.sensordata"
 #' token <- "token"
-#' conn <- bs.connect(host, port, token)
-#' storage.save(storage_name,x)
+#' conn <- bs.connect(host, storage_name, token)
 #' @export
 
 storage.save <- local(
@@ -20,15 +18,14 @@ storage.save <- local(
     if(!is.data.frame(x)) stop("x must be data frame type")
 
     # This function need API version 1.1 or more
-    if(is.null(bs.active.url.v1.1))
-      stop(bs.active.url.v1.1)
-    bs.active.url <- paste(bs.active.url.v1.1, storage_name,sep = "/")
+    if(is.null(bs.active.url))
+      stop(bs.active.url)
+    url <- paste(bs.active.url, storage_name,sep = "/")
 
     # Remove data first
-    h <- httr::handle(bs.active.url)
+    h <- httr::handle(url)
     req <- httr::DELETE(URL=NULL,handle = h)
-                    #    ,httr::add_headers(.headers = c("Content-Type"="application/json","User-Agent"="Rbigstream")))
-    httr::stop_for_status(req,paste("Cannot connnect to Bigstream via ",bs.active.url, " or current bigstream version does not support storage.put command"))
+    httr::stop_for_status(req,paste("Cannot connnect to Bigstream via ", url))
     json <- httr::content(req, "text")
 
     object <- jsonlite::fromJSON(json)

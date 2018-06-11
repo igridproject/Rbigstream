@@ -24,10 +24,9 @@ This command support on Bigstream version 1.2 or more only
 }
 \examples{
 host <- "http://sample.bigstream.io"
-port <- 19080
 storage_name <- "sample.sensordata"
 token <- "token"
-conn <- bs.connect(host, port, token)
+conn <- bs.connect(host, storage_name, token)
 
 #return lastest data
 storage.get(storage_name)

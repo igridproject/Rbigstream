@@ -12,10 +12,9 @@
 #'
 #' @examples
 #' host <- "http://sample.bigstream.io"
-#' port <- 19080
 #' storage_name <- "sample.sensordata"
 #' token <- "token"
-#' conn <- bs.connect(host, port, token)
+#' conn <- bs.connect(host, storage_name, token)
 #'
 #' #return lastest data
 #' storage.get(storage_name)
@@ -36,24 +35,21 @@ storage.get <- local(
       stop(bs.no.url)
 
     # Version 1.2
+    data.url <- paste(bs.url, "v1.2/object" ,storage.name, sep = "/")
     if(!is.null(id)) {
-      data.url <- paste(bs.url, "v1.2/object" ,storage.name, sep = "/")
       data.url <- paste(data.url, id, sep = "$")
     } else if(!is.null(index)){
       if(!is.numeric(index) || index==0){
         stop("index must be integer or not 0")
       }
-      data.url <- paste(bs.url, "v1.2/object" ,storage.name, sep = "/")
       index <- paste("[",index, "]", sep = "")
       data.url <- paste(data.url, index, sep = "$")
     } else if(!is.null(key)){
-      data.url <- paste(bs.url, "v1.2/object" ,storage.name, sep = "/")
       key <- paste("{",key, "}", sep = "")
       data.url <- paste(data.url, key, sep = "$")
     } else {
-      data.url <- paste(bs.url, "v1.2/object" ,storage.name, sep = "/")
-    }
 
+    }
     # version 1.0
     # data.url <- paste(bs.url, "v1/object" ,storage.name, sep = "/")
     # data.url <- paste(data.url, id, sep = ".")

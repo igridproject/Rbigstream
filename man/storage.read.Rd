@@ -5,7 +5,8 @@
 \title{Get data object from storage}
 \usage{
 storage.read(storage.name, field = c("data", "id", "meta"), from = 1,
-  offset = NULL, last = 0, limit = 10, date_opt = NULL)
+  offset = NULL, last = 0, limit = 10, date_opt = NULL,
+  flatten = TRUE)
 }
 \arguments{
 \item{storage.name}{storage name}
@@ -21,6 +22,8 @@ storage.read(storage.name, field = c("data", "id", "meta"), from = 1,
 \item{limit}{limit object output}
 
 \item{date_opt}{optional (TBA)}
+
+\item{flatten}{flatten option in jsonlite}
 }
 \value{
 data from Bigstream storage
@@ -30,9 +33,8 @@ read data from Bigstream storage via Bigstream storage API
 }
 \examples{
 host <- "http://sample.bigstream.io"
-port <- 19080
 storage_name <- "sample.sensordata"
 token <- "token"
-conn <- bs.connect(host, port, token)
+conn <- bs.connect(host, storage_name, token)
 storage.read(storage_name)
 }
