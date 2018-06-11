@@ -53,6 +53,8 @@ storage.read <- local(
     # stopifnot(is.data.frame(data.list))
     if(flatten){
       data.list <- jsonlite::flatten(data.list)
+      coln <- sub("^[^\\.]*\\.","",colnames(data.list))
+      colnames(data.list) <- coln
     }
     data.list
   }
