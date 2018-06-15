@@ -4,8 +4,8 @@
 \alias{storage.read}
 \title{Get data object from storage}
 \usage{
-storage.read(storage.name, field = c("data", "id", "meta"), from = 1,
-  offset = NULL, last = 0, limit = 10, date_opt = NULL,
+storage.read(storage.name, field = c("data", "id", "meta", "_data", "_id",
+  "_meta"), from = 1, offset = NULL, last = 0, limit = 10,
   flatten = TRUE)
 }
 \arguments{
@@ -21,9 +21,9 @@ storage.read(storage.name, field = c("data", "id", "meta"), from = 1,
 
 \item{limit}{limit object output}
 
-\item{date_opt}{optional (TBA)}
+\item{flatten}{return flatten Data.frame or return JSON if option is FALSE}
 
-\item{flatten}{flatten option in jsonlite}
+\item{date_opt}{optional (TBA)}
 }
 \value{
 data from Bigstream storage
