@@ -52,7 +52,7 @@ df <- storage.read(storage_name, field="meta", last=10)
 df <- storage.read(storage_name, field="data", last=10, limit=10)
 
 # return value as json 
-df <- storage.read(storage_name, field="data", last=10, limit=10, flatten=FALSE)
+json_df <- storage.read(storage_name, field="data", last=10, limit=10, flatten=FALSE)
 
 # get single object data
 list1 <- storage.get(storage_name)  # return lastest data of given storage
