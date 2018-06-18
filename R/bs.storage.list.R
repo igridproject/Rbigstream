@@ -14,16 +14,8 @@
 #' @export
 storage.list <- local(
   function() {
-    url <- ""
-    if(!is.null(conn))
-      url <- conn
-    else {
-      if(is.null(bs.active.url))
-        stop(bs.no.url)
-      url <- bs.active.url
-    }
-    cat("call Bigstreram API -> ",url,"\n")
-    json <- request(url)
+    cat("call Bigstreram API -> ",bs.active.url,"\n")
+    json <- request(bs.active.url)
     jsonlite::fromJSON(json,simplifyVector = TRUE)
   }
 , env = BS.env)
