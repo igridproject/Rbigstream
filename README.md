@@ -1,6 +1,6 @@
 # Rbigstream
 BigStream Control ,Storage and Virtual Repository Interface for R
-[updated 2018-06-15]
+[updated 2018-06-19]
 
 
 ## Package installation
@@ -34,10 +34,9 @@ host = "http://<bigstream.storage-api.url>"
 storage_name = "storage.name"
 token = "--authentication token--"
 
-conn1 <- bs.connect(host, storage_name, token)
+bs.connect(host, storage_name, token)
 
-storage.list()                     # list all storages of default connection
-storage.list(conn = conn1)         # list all storages of given connection
+storage.list()                     # list all storages
 
 stat <- storage.stat(storage_name) # count number of data in a particular storage ; named list data type
 stat$count

@@ -7,11 +7,32 @@ local({
   bs.no.url <- "\nNeed to setup Bigstream storage service config first"
   bs.no.storage.pick <- "\nNo select storage"
   bs.path <- "v1.2/storage"
+  bs.token <- NULL
   bs.active.url <- NULL
   bs.url <- NULL
   bs.storage.name <- NULL
   port <- 19080
   object.path <- "objects"
+
+  # wrapper for httr get call
+  request <- function(data.url,body = NULL,opt=c("GET","PUT","DELETE")){
+    opt <- match.arg(opt)
+
+    if(opt=="GET"){
+      if(!RCurl::url.exists(data.url))
+        stop("Cannot connnect to Bigstream via ", data.url," or Bigstream server version does not support.")
+      req <- httr::GET(data.url,httr::add_headers(.headers =c("Authorization"=paste("Bearer",bs.token,sep=" "))))
+    } else if(opt=="DELETE") {
+      req <- httr::DELETE(data.url,httr::add_headers(.headers =c("Authorization"=paste("Bearer",bs.token,sep=" "))))
+    } else if(opt=="PUT") {
+      if(is.null(body)) stop("call opt = put must have body param")
+      req <- httr::PUT(data.url,body=body,httr::add_headers(.headers =c("Content-Type"="application/json","User-Agent"="Rbigstream","Authorization"=paste("Bearer",bs.token,sep=" "))))
+    }
+    if(httr::status_code(req)==403 || httr::status_code(req)==401)
+      stop("Your token is invalid. Try call bs.connect with Authorization token again.")
+    json <- httr::content(req,"text",encoding = "utf8")
+    return(json)
+  }
 }, env = BS.env)
 
 #' Setup Bigstream connector function
@@ -24,7 +45,7 @@ local({
 #' host <- "http://sample.bigstream.io"
 #' storage_name <- "sample.sensordata"
 #' token <- "token"
-#' conn <- bs.connect(host, storage_name, token)
+#' bs.connect(host, storage_name, token)
 #' @export
 bs.connect <- local(
   function(host,
@@ -37,6 +58,7 @@ bs.connect <- local(
       host <- substrLeft(host,nchar(host)-1)
     }
     bs.active.url <<- paste(host, port, sep = ":")
+    bs.token <<- token
 
     # root path
     bs.url <<- bs.active.url
@@ -70,6 +92,7 @@ bs <- local(
         cat("\nCurrent Storage : ")
         cat(bs.storage.name)
       }
+      cat("\ntoken : ",bs.token)
     }
   }
 , env = BS.env)

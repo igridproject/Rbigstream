@@ -4,10 +4,7 @@
 \alias{storage.list}
 \title{Show storage list}
 \usage{
-storage.list(conn = NULL)
-}
-\arguments{
-\item{conn}{Bigstream connection (if does not call bs.connect() function first)}
+storage.list()
 }
 \value{
 Storage list in give Bigstream connection
@@ -19,10 +16,7 @@ Given storage list from current connection setup or given connection
 host <- "http://sample.bigstream.io"
 storage_name <- "sample.sensordata"
 token <- "token"
-conn <- bs.connect(host, storage_name, token)
+bs.connect(host, storage_name, token)
 storage.list()
 
-or
-
-storage.list(conn)
 }

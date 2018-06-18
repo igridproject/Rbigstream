@@ -10,7 +10,7 @@
 #' host <- "http://sample.bigstream.io"
 #' storage_name <- "sample.sensordata"
 #' token <- "token"
-#' conn <- bs.connect(host, storage_name, token)
+#' bs.connect(host, storage_name, token)
 #' @export
 
 storage.save <- local(
@@ -23,15 +23,10 @@ storage.save <- local(
     url <- paste(bs.active.url, storage_name,sep = "/")
 
     # Remove data first
-    h <- httr::handle(url)
-    req <- httr::DELETE(URL=NULL,handle = h)
-    httr::stop_for_status(req,paste("Cannot connnect to Bigstream via ", url))
-    json <- httr::content(req, "text")
-
+    json <- request(url,opt="DELETE")
     object <- jsonlite::fromJSON(json)
     if(!(object=="OK"))
       stop(object)
-    rm(h)
     storage.put(storage_name,x)
   }
   , env = BS.env)

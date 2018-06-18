@@ -14,7 +14,7 @@
 #' host <- "http://sample.bigstream.io"
 #' storage_name <- "sample.sensordata"
 #' token <- "token"
-#' conn <- bs.connect(host, storage_name, token)
+#' bs.connect(host, storage_name, token)
 #'
 #' #return lastest data
 #' storage.get(storage_name)
@@ -54,9 +54,8 @@ storage.get <- local(
     # data.url <- paste(bs.url, "v1/object" ,storage.name, sep = "/")
     # data.url <- paste(data.url, id, sep = ".")
     #
-    if(!RCurl::url.exists(data.url))
-      stop("Cannot connnect to Bigstream via ", data.url," or Bigstream server version does not support. (This command support on bigstream v1.2 or more) ")
     cat("call Bigstreram API -> ",data.url,"\n")
-    jsonlite::read_json(data.url, simplifyVector = TRUE)
+    json <- request(data.url,opt="GET")
+    jsonlite::fromJSON(json, simplifyVector = TRUE)
   }
 , env = BS.env)

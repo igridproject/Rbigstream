@@ -19,6 +19,6 @@ Get storage information
 host <- "http://sample.bigstream.io"
 storage_name <- "sample.sensordata"
 token <- "token"
-conn <- bs.connect(host, storage_name, token)
+bs.connect(host, storage_name, token)
 storage.stat(storage_name)
 }

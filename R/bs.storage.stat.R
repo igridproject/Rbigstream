@@ -8,7 +8,7 @@
 #' host <- "http://sample.bigstream.io"
 #' storage_name <- "sample.sensordata"
 #' token <- "token"
-#' conn <- bs.connect(host, storage_name, token)
+#' bs.connect(host, storage_name, token)
 #' storage.stat(storage_name)
 #' @export
 storage.stat <- local(
@@ -16,8 +16,7 @@ storage.stat <- local(
     if(is.null(bs.active.url))
       stop(bs.no.url)
     bs.active.url <- paste(bs.active.url, storage_name, "stats",sep = "/")
-    if(!RCurl::url.exists(bs.active.url))
-      stop("Cannot connnect to Bigstream via ", bs.active.url)
-    jsonlite::read_json(bs.active.url,simplifyVector = TRUE)
+    json <- request(bs.active.url,opt="GET")
+    jsonlite::fromJSON(json,simplifyVector = TRUE)
   }
 , env = BS.env)

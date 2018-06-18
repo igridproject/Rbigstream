@@ -21,5 +21,5 @@ This function replace data on given Bigstream Storage name.
 host <- "http://sample.bigstream.io"
 storage_name <- "sample.sensordata"
 token <- "token"
-conn <- bs.connect(host, storage_name, token)
+bs.connect(host, storage_name, token)
 }

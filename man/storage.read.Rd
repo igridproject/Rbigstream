@@ -22,8 +22,6 @@ storage.read(storage.name, field = c("data", "id", "meta", "_data", "_id",
 \item{limit}{limit object output}
 
 \item{flatten}{return flatten Data.frame or return JSON if option is FALSE}
-
-\item{date_opt}{optional (TBA)}
 }
 \value{
 data from Bigstream storage
@@ -35,6 +33,6 @@ read data from Bigstream storage via Bigstream storage API
 host <- "http://sample.bigstream.io"
 storage_name <- "sample.sensordata"
 token <- "token"
-conn <- bs.connect(host, storage_name, token)
+bs.connect(host, storage_name, token)
 storage.read(storage_name)
 }

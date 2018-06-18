@@ -8,7 +8,7 @@
 #' host <- "http://sample.bigstream.io"
 #' storage_name <- "sample.sensordata"
 #' token <- "token"
-#' conn <- bs.connect(host, storage_name, token)
+#' bs.connect(host, storage_name, token)
 #' storage.put(storage_name,x)
 #' @export
 
@@ -46,12 +46,7 @@ storage.put <- local(
       .body <- jsonlite::toJSON(.body ,auto_unbox = TRUE)
     }
     if(!jsonlite::validate(.body)) stop()
-    req <- httr::PUT(url,
-               body = .body ,
-               httr::add_headers(.headers = c("Content-Type"="application/json","User-Agent"="Rbigstream")))
-    httr::stop_for_status(req,paste("Cannot put data to Bigstream via ", url, " or current bigstream version does not support storage.put command"))
-    json <- httr::content(req, "text")
-
+    json <- request(url,.body,"PUT")
     object <- jsonlite::fromJSON(json)
     if(object=="OK")
       cat("Put data to ", url ,"Completed.\n")

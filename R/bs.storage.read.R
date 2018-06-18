@@ -8,7 +8,6 @@
 #' @param offset Lookup data after given object id
 #' @param last number of lastest data to read (overwrite "from" arguments)
 #' @param limit limit object output
-#' @param date_opt optional (TBA)
 #' @param flatten return flatten Data.frame or return JSON if option is FALSE
 #' @return data from Bigstream storage
 #'
@@ -16,7 +15,7 @@
 #' host <- "http://sample.bigstream.io"
 #' storage_name <- "sample.sensordata"
 #' token <- "token"
-#' conn <- bs.connect(host, storage_name, token)
+#' bs.connect(host, storage_name, token)
 #' storage.read(storage_name)
 #' @export
 storage.read <- local(
@@ -48,15 +47,14 @@ storage.read <- local(
     if(!RCurl::url.exists(data.url))
       stop("Cannot connnect to Bigstream via ", data.url)
     cat("call Bigstreram API -> ",data.url,"\n")
+    json <- request(data.url,opt="GET")
     if(flatten) {
-      data.list <- jsonlite::read_json(data.url,simplifyVector = TRUE)
+      data.list <- jsonlite::fromJSON(json,simplifyVector = TRUE)
       data.list <- jsonlite::flatten(data.list)
       coln <- sub("^[^\\.]*\\.","",colnames(data.list))
       colnames(data.list) <- coln
       return(data.list)
     } else {
-      req <- httr::GET(data.url)
-      json <- httr::content(req,"text",encoding = "utf8")
       return(json)
     }
   }

@@ -2,23 +2,18 @@
 #' @description
 #' Given storage list from current connection setup or given connection
 #'
-#' @param conn Bigstream connection (if does not call bs.connect() function first)
-#'
 #' @return Storage list in give Bigstream connection
 #'
 #' @examples
 #' host <- "http://sample.bigstream.io"
 #' storage_name <- "sample.sensordata"
 #' token <- "token"
-#' conn <- bs.connect(host, storage_name, token)
+#' bs.connect(host, storage_name, token)
 #' storage.list()
 #'
-#' or
-#'
-#' storage.list(conn)
 #' @export
 storage.list <- local(
-  function(conn = NULL) {
+  function() {
     url <- ""
     if(!is.null(conn))
       url <- conn
@@ -27,9 +22,8 @@ storage.list <- local(
         stop(bs.no.url)
       url <- bs.active.url
     }
-    if(!RCurl::url.exists(url))
-      stop("Cannot connnect to Bigstream via ", url)
     cat("call Bigstreram API -> ",url,"\n")
-    jsonlite::read_json(url,simplifyVector = TRUE)
+    json <- request(url)
+    jsonlite::fromJSON(json,simplifyVector = TRUE)
   }
 , env = BS.env)

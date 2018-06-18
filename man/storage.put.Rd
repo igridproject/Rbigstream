@@ -21,6 +21,6 @@ Put data to storage
 host <- "http://sample.bigstream.io"
 storage_name <- "sample.sensordata"
 token <- "token"
-conn <- bs.connect(host, storage_name, token)
+bs.connect(host, storage_name, token)
 storage.put(storage_name,x)
 }
