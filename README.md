@@ -10,7 +10,7 @@ BigStream Control ,Storage and Virtual Repository Interface for R
 install.packages("devtools")
 ```
 
-* install lastest version Rbigstream from github
+* install latest version Rbigstream from github
 ```{r}
 devtools::install_github("igridproject/Rbigstream")
 ```

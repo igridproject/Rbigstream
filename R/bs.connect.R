@@ -6,7 +6,7 @@ BS.env <- new.env()
 local({
   bs.no.url <- "\nNeed to setup Bigstream storage service config first"
   bs.no.storage.pick <- "\nNo select storage"
-  bs.path <- "v1.2/storage"
+  bs.path <- "storage"
   bs.token <- NULL
   bs.active.url <- NULL
   bs.url <- NULL
@@ -42,7 +42,7 @@ local({
 #' @param token Set API token
 #' @return connection setting
 #' @examples
-#' host <- "http://sample.bigstream.io"
+#' host <- "http://sample.bigstream.io/"
 #' storage_name <- "sample.sensordata"
 #' token <- "token"
 #' bs.connect(host, storage_name, token)
@@ -50,19 +50,21 @@ local({
 bs.connect <- local(
   function(host,
           storage_name = NULL,
-          token) {
+          token
+          ) {
     old.bs.active.url <- bs.active.url
 
 
     if(identical("/",substrRight(host,1))) {
       host <- substrLeft(host,nchar(host)-1)
     }
-    bs.active.url <<- paste(host, port, sep = ":")
+
+    #Set up token
     bs.token <<- token
 
     # root path
     bs.url <<- bs.active.url
-    bs.active.url <<- paste(bs.active.url, bs.path, sep = "/")
+    bs.active.url <<- paste(host, bs.path, sep = "/")
 
     if(!(is.null(storage_name)))
       bs.storage.name <<- storage_name
