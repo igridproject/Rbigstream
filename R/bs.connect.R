@@ -19,8 +19,6 @@ local({
     opt <- match.arg(opt)
 
     if(opt=="GET"){
-      if(!RCurl::url.exists(data.url))
-        stop("Cannot connnect to Bigstream via ", data.url," or Bigstream server version does not support.")
       req <- httr::GET(data.url,httr::add_headers(.headers =c("Authorization"=paste("Bearer",bs.token,sep=" "))))
     } else if(opt=="DELETE") {
       req <- httr::DELETE(data.url,httr::add_headers(.headers =c("Authorization"=paste("Bearer",bs.token,sep=" "))))
@@ -63,7 +61,7 @@ bs.connect <- local(
     bs.token <<- token
 
     # root path
-    bs.url <<- bs.active.url
+    bs.url <<- host
     bs.active.url <<- paste(host, bs.path, sep = "/")
 
     if(!(is.null(storage_name)))

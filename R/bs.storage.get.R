@@ -35,7 +35,7 @@ storage.get <- local(
       stop(bs.no.url)
 
     # Version 1.2
-    data.url <- paste(bs.url, "v1.2/object" ,storage.name, sep = "/")
+    data.url <- paste(bs.url, "object" ,storage.name, sep = "/")
     if(!is.null(id)) {
       data.url <- paste(data.url, id, sep = "$")
     } else if(!is.null(index)){
