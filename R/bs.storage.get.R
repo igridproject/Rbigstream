@@ -7,6 +7,7 @@
 #' @param id Object id
 #' @param index get data by index
 #' @param key get data by defined key  in storage
+#' @param flatten return in JSON format if this param is FALSE
 
 #' @return data from Bigstream storage. Return lastest data if no id, index or key param
 #'
@@ -30,7 +31,7 @@
 #' @export
 storage.get <- local(
   function(storage.name,
-           id=NULL,index=NULL,key=NULL) {
+           id=NULL,index=NULL,key=NULL,flatten=TRUE) {
     if(is.null(bs.active.url))
       stop(bs.no.url)
 
@@ -50,12 +51,13 @@ storage.get <- local(
     } else {
 
     }
-    # version 1.0
-    # data.url <- paste(bs.url, "v1/object" ,storage.name, sep = "/")
-    # data.url <- paste(data.url, id, sep = ".")
-    #
+
     cat("call Bigstreram API -> ",data.url,"\n")
     json <- request(data.url,opt="GET")
-    jsonlite::fromJSON(json, simplifyVector = TRUE)
+    if(flatten) {
+      return(jsonlite::fromJSON(json, simplifyVector = TRUE))
+    } else {
+      return(json)
+    }
   }
 , env = BS.env)
