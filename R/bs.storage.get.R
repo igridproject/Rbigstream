@@ -3,7 +3,7 @@
 #' read data from Bigstream storage via Bigstream storage API
 #' This command support on Bigstream version 1.2 or more only
 #'
-#' @param storage.name storage name
+#' @param storage_name storage name
 #' @param id Object id
 #' @param index get data by index
 #' @param key get data by defined key  in storage
@@ -30,13 +30,13 @@
 #' storage.get(storage_name,key="")
 #' @export
 storage.get <- local(
-  function(storage.name,
+  function(storage_name,
            id=NULL,index=NULL,key=NULL,flatten=TRUE) {
     if(is.null(bs.active.url))
       stop(bs.no.url)
 
     # Version 1.2
-    data.url <- paste(bs.url, "object" ,storage.name, sep = "/")
+    data.url <- paste(bs.url, "object" ,storage_name, sep = "/")
     if(!is.null(id)) {
       data.url <- paste(data.url, id, sep = "$")
     } else if(!is.null(index)){

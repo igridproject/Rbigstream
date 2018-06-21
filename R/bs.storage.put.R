@@ -41,6 +41,9 @@ storage.put <- local(
       .body <- substring(.body,2)
       .body <- paste("[",.body,"]",sep = "")
     } else {
+      if(class(x)=="json"){
+        x<-fromJSON(x)
+      }
       .body <- ""
       .body <- c(meta,list(data=x))
       .body <- jsonlite::toJSON(.body ,auto_unbox = TRUE)
