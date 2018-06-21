@@ -44,8 +44,7 @@ storage.read <- local(
     }
 
     data.url <- paste(data.url, param.combine, sep = "?")
-    if(!RCurl::url.exists(data.url))
-      stop("Cannot connnect to Bigstream via ", data.url)
+
     cat("call Bigstreram API -> ",data.url,"\n")
     json <- request(data.url,opt="GET")
     if(flatten) {
