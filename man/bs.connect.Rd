@@ -4,12 +4,10 @@
 \alias{bs.connect}
 \title{Setup Bigstream connector function}
 \usage{
-bs.connect(host, storage_name = NULL, token)
+bs.connect(host, token)
 }
 \arguments{
 \item{host}{Bigstream Service host.}
-
-\item{storage_name}{Set storage name}
 
 \item{token}{Set API token}
 }
@@ -20,8 +18,7 @@ connection setting
 Setup Bigstream connector function
 }
 \examples{
-host <- "http://sample.bigstream.io"
-storage_name <- "sample.sensordata"
+host <- "http://sample.bigstream.io/"
 token <- "token"
 bs.connect(host, storage_name, token)
 }

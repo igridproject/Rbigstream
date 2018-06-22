@@ -4,16 +4,19 @@
 \alias{storage.get}
 \title{Get data object from storage}
 \usage{
-storage.get(storage.name, id = NULL, index = NULL, key = NULL)
+storage.get(storage_name, id = NULL, index = NULL, key = NULL,
+  flatten = TRUE)
 }
 \arguments{
-\item{storage.name}{storage name}
+\item{storage_name}{storage name}
 
 \item{id}{Object id}
 
 \item{index}{get data by index}
 
 \item{key}{get data by defined key  in storage}
+
+\item{flatten}{return in JSON format if this param is FALSE}
 }
 \value{
 data from Bigstream storage. Return lastest data if no id, index or key param
@@ -26,7 +29,7 @@ This command support on Bigstream version 1.2 or more only
 host <- "http://sample.bigstream.io"
 storage_name <- "sample.sensordata"
 token <- "token"
-bs.connect(host, storage_name, token)
+bs.connect(host, token)
 
 #return lastest data
 storage.get(storage_name)

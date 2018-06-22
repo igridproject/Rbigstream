@@ -16,7 +16,7 @@ Given storage list from current connection setup or given connection
 host <- "http://sample.bigstream.io"
 storage_name <- "sample.sensordata"
 token <- "token"
-bs.connect(host, storage_name, token)
+bs.connect(host, token)
 storage.list()
 
 }

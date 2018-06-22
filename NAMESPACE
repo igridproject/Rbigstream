@@ -3,6 +3,7 @@
 export(bs)
 export(bs.connect)
 export(storage.get)
+export(storage.get_as_url)
 export(storage.list)
 export(storage.put)
 export(storage.read)

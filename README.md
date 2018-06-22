@@ -1,6 +1,6 @@
 # Rbigstream
 BigStream Control ,Storage and Virtual Repository Interface for R
-[updated 2018-06-19]
+[updated 2018-06-22]
 
 
 ## Package installation
@@ -21,6 +21,7 @@ library(Rbigstream)
 ?bs.connect
 ?storage.list
 ?storage.get
+?storage.get_as_url
 ?storage.read
 ?storage.put
 ?storage.stat
@@ -64,6 +65,10 @@ list1 <- storage.get(storage_name,index=1)
 
 # return data by key defined ("_key":value search  )
 list1 <- storage.get(storage_name,key="")
+
+# get download file url (for special object eg. csv, binary or image object)
+url <- storage.get_as_url(storage_name,type="csv")
+read.csv(url)
 
 # append need api version 1.2 or above
 storage.put(storage_name = "test.api", df)
