@@ -34,7 +34,7 @@ host = "http://<bigstream.storage-api.url>"
 storage_name = "storage.name"
 token = "--authentication token--"
 
-bs.connect(host, storage_name, token)
+bs.connect(host, token)
 
 storage.list()                     # list all storages
 
