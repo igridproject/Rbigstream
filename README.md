@@ -67,7 +67,7 @@ list1 <- storage.get(storage_name,index=1)
 list1 <- storage.get(storage_name,key="")
 
 # get download file url (for special object eg. csv, binary or image object)
-url <- storage.get_as_url(storage_name,type="csv")
+url <- storage.getAsUrl(storage_name,type="csv")
 read.csv(url)
 
 # append need api version 1.2 or above

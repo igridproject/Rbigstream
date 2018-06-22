@@ -18,11 +18,11 @@
 #' bs.connect(host, token)
 #'
 #' #return lastest data as csv
-#' url <- storage.get_as_url(storage_name)
+#' url <- storage.getFileUrl(storage_name)
 #' read.csv(url, header=FALSE, sep="|")
 #'
 #' @export
-storage.get_as_url <- local(
+storage.getFileUrl <- local(
   function(storage_name,
            id=NULL,index=NULL,key=NULL,type=c("csv","jpg")) {
     if(is.null(bs.active.url))
@@ -45,9 +45,11 @@ storage.get_as_url <- local(
     } else {
 
     }
+    token <- paste("token",bs.token, sep="=")
     data.url <- paste(data.url, "data", sep = "/")
     data.url <- paste(data.url, "filetype", sep = "?")
     data.url <- paste(data.url, type, sep = "=")
+    data.url <- paste(data.url, token, sep = "&")
     cat("return Bigstreram data url -> ",data.url,"\n")
     return(data.url)
     # json <- request(data.url,opt="GET")
