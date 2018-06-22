@@ -29,6 +29,7 @@ storage.get_as_url <- local(
       stop(bs.no.url)
 
     # Version 1.2
+    type <- match.arg(type)
     data.url <- paste(bs.url, "object" ,storage_name, sep = "/")
     if(!is.null(id)) {
       data.url <- paste(data.url, id, sep = "$")
