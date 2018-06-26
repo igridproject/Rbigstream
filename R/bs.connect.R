@@ -57,8 +57,6 @@ bs.connect <- local(
     bs.url <<- host
     bs.active.url <<- paste(host, bs.path, sep = "/")
 
-    if(!(is.null(storage_name)))
-      bs.storage.name <<- storage_name
     cat("Set up Bigstream host to ")
     cat(bs.active.url,fill = TRUE)
     return(bs.active.url)
