@@ -24,7 +24,7 @@
 #' @export
 storage.getFileUrl <- local(
   function(storage_name,
-           id=NULL,index=NULL,key=NULL,type=c("csv","jpg")) {
+           id=NULL,index=NULL,key=NULL,type="") {
     if(is.null(bs.active.url))
       stop(bs.no.url)
 
