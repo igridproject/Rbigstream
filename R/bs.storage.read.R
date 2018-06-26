@@ -20,7 +20,7 @@
 #' @export
 storage.read <- local(
   function(storage.name,
-           field=c("data","id","meta","_data","_id","_meta"),
+           field=c("all","data","id","meta","_data","_id","_meta"),
            from = 1,
            offset = NULL,
            last = 0,
