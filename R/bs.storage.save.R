@@ -24,9 +24,9 @@ storage.save <- local(
 
     # Remove data first
     json <- request(url,opt="DELETE")
-    object <- jsonlite::fromJSON(json)
-    if(!(object=="OK"))
-      stop(object)
+    #object <- jsonlite::fromJSON(json)
+    #if(!(object=="OK"))
+      #stop(object)
     storage.put(storage_name,x)
   }
   , env = BS.env)
