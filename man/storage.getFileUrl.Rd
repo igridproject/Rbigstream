@@ -5,7 +5,7 @@
 \title{Get data object from storage}
 \usage{
 storage.getFileUrl(storage_name, id = NULL, index = NULL, key = NULL,
-  type = c("csv", "jpg"))
+  type = "")
 }
 \arguments{
 \item{storage_name}{storage name}

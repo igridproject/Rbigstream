@@ -4,8 +4,8 @@
 \alias{storage.read}
 \title{Get data object from storage}
 \usage{
-storage.read(storage.name, field = c("data", "id", "meta", "_data", "_id",
-  "_meta"), from = 1, offset = NULL, last = 0, limit = 10,
+storage.read(storage.name, field = c("all", "data", "id", "meta", "_data",
+  "_id", "_meta"), from = 1, offset = NULL, last = 0, limit = 10,
   flatten = TRUE)
 }
 \arguments{
