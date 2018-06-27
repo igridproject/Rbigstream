@@ -34,8 +34,8 @@ storage.read <- local(
     data.url <- paste(bs.active.url, storage.name, object.path,sep = "/")
     param.combine <- "limit=10"
 
-    if(!is.numeric(last) || !is.numeric(limit))
-      stop("last or limit param must be integer.")
+    if(!is.numeric(last))
+      stop("last must be integer.")
 
     if(is.null(offset)) {
       param.combine <- add_param(from , offset, limit, last, field)
