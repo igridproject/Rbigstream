@@ -5,7 +5,7 @@ Imports:
   httr
 Type: Package
 Title: Bigstream API for R
-Version: 0.1.0
+Version: 1.0.0
 Author: Krit Punpreuk [aut,cre]
 Maintainer: Krit Punpreuk <gogogokrit@gmail.com>
 Description: Bigstream wrapper for R
