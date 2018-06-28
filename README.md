@@ -21,7 +21,7 @@ library(Rbigstream)
 ?bs.connect
 ?storage.list
 ?storage.get
-?storage.get_as_url
+?storage.getFileUrl
 ?storage.read
 ?storage.put
 ?storage.stat
@@ -52,6 +52,7 @@ df <- storage.read(storage_name, field="meta", last=10)
 df <- storage.read(storage_name, field="data", last=10, limit=10)
 
 # return value as json 
+# limit=NULL for getting all
 json_df <- storage.read(storage_name, field="data", last=10, limit=10, flatten=FALSE)
 
 # get single object data
@@ -67,13 +68,13 @@ list1 <- storage.get(storage_name,index=1)
 list1 <- storage.get(storage_name,key="")
 
 # get download file url (for special object eg. csv, binary or image object)
-url <- storage.getAsUrl(storage_name,type="csv")
+url <- storage.getFileUrl(storage_name,type="csv")
 read.csv(url)
 
 # append need api version 1.2 or above
-storage.put(storage_name = "test.api", df)
+storage.put(storage_name, df)
 
 # same as storage.put but remove existing data on storage out first
-storage.save(storage_name = "test.api", df)
+storage.save(storage_name, df)
 
 ```
