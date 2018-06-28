@@ -18,9 +18,11 @@ put status
 Put data to storage
 }
 \examples{
+\dontrun{
 host <- "http://sample.bigstream.io"
 storage_name <- "sample.sensordata"
 token <- "token"
 bs.connect(host, token)
 storage.put(storage_name,x)
+}
 }

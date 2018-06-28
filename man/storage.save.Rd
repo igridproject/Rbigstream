@@ -18,8 +18,10 @@ save status
 This function replace data on given Bigstream Storage name.
 }
 \examples{
+\dontrun{
 host <- "http://sample.bigstream.io"
 storage_name <- "sample.sensordata"
 token <- "token"
 bs.connect(host, token)
+}
 }

@@ -11,6 +11,7 @@
 #' @return data in JSON format from Bigstream storage. Return lastest data if no id, index or key param
 #'
 #' @examples
+#' \dontrun{
 #' host <- "http://sample.bigstream.io"
 #' storage_name <- "sample.sensordata"
 #' token <- "token"
@@ -27,6 +28,7 @@
 #'
 #' # return data by key defined
 #' storage.getJSON(storage_name,key="")
+#' }
 #' @export
 storage.getJSON <- local(
   function(storage_name,

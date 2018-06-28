@@ -1,6 +1,6 @@
 #' Get data object from storage
 #' @description
-#' read data from Bigstream storage via Bigstream storage API
+#' Read data from Bigstream storage via Bigstream storage API.
 #' This command support on Bigstream version 1.2 or more only
 #'
 #' @param storage_name storage name
@@ -12,6 +12,7 @@
 #' @return data from Bigstream storage. Return lastest data if no id, index or key param
 #'
 #' @examples
+#' \dontrun{
 #' host <- "http://sample.bigstream.io"
 #' storage_name <- "sample.sensordata"
 #' token <- "token"
@@ -28,10 +29,15 @@
 #'
 #' # return data by key defined
 #' storage.get(storage_name,key="")
+#' }
+#'
 #' @export
 storage.get <- local(
   function(storage_name,
-           id=NULL,index=NULL,key=NULL,flatten=TRUE) {
+           id=NULL,
+           index=NULL,
+           key=NULL,
+           flatten=TRUE) {
     if(is.null(bs.active.url))
       stop(bs.no.url)
 
@@ -59,5 +65,4 @@ storage.get <- local(
     } else {
       return(json)
     }
-  }
-, env = BS.env)
+  }, env = BS.env)

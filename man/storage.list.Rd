@@ -13,10 +13,11 @@ Storage list in give Bigstream connection
 Given storage list from current connection setup or given connection
 }
 \examples{
+\dontrun{
 host <- "http://sample.bigstream.io"
 storage_name <- "sample.sensordata"
 token <- "token"
 bs.connect(host, token)
 storage.list()
-
+}
 }

@@ -12,6 +12,7 @@
 #' @return url for download object
 #'
 #' @examples
+#' \dontrun{
 #' host <- "http://sample.bigstream.io"
 #' storage_name <- "sample.sensordata"
 #' token <- "token"
@@ -20,7 +21,7 @@
 #' #return lastest data as csv
 #' url <- storage.getFileUrl(storage_name)
 #' read.csv(url, header=FALSE, sep="|")
-#'
+#'}
 #' @export
 storage.getFileUrl <- local(
   function(storage_name,

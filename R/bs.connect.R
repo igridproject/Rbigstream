@@ -13,7 +13,8 @@ local({
   object.path <- "objects"
 
   # wrapper for httr get call
-  request <- function(data.url,body = NULL,opt=c("GET","PUT","DELETE")){
+  request <- function(data.url,body = NULL,
+                      opt=c("GET","PUT","DELETE")){
     opt <- match.arg(opt)
 
     if(opt=="GET"){
@@ -39,7 +40,8 @@ local({
 #' @examples
 #' host <- "http://sample.bigstream.io/"
 #' token <- "token"
-#' bs.connect(host, storage_name, token)
+#' bs.connect(host, token)
+#'
 #' @export
 bs.connect <- local(
   function(host,token) {
