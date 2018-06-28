@@ -30,9 +30,11 @@ data from Bigstream storage
 read data from Bigstream storage via Bigstream storage API
 }
 \examples{
+\dontrun{
 host <- "http://sample.bigstream.io"
 storage_name <- "sample.sensordata"
 token <- "token"
 bs.connect(host, token)
 storage.read(storage_name)
+}
 }

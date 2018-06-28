@@ -20,5 +20,6 @@ Setup Bigstream connector function
 \examples{
 host <- "http://sample.bigstream.io/"
 token <- "token"
-bs.connect(host, storage_name, token)
+bs.connect(host, token)
+
 }

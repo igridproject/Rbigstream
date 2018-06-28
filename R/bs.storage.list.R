@@ -5,12 +5,13 @@
 #' @return Storage list in give Bigstream connection
 #'
 #' @examples
+#' \dontrun{
 #' host <- "http://sample.bigstream.io"
 #' storage_name <- "sample.sensordata"
 #' token <- "token"
 #' bs.connect(host, token)
 #' storage.list()
-#'
+#'}
 #' @export
 storage.list <- local(
   function() {

@@ -22,10 +22,11 @@ storage.get(storage_name, id = NULL, index = NULL, key = NULL,
 data from Bigstream storage. Return lastest data if no id, index or key param
 }
 \description{
-read data from Bigstream storage via Bigstream storage API
+Read data from Bigstream storage via Bigstream storage API.
 This command support on Bigstream version 1.2 or more only
 }
 \examples{
+\dontrun{
 host <- "http://sample.bigstream.io"
 storage_name <- "sample.sensordata"
 token <- "token"
@@ -42,4 +43,6 @@ storage.get(storage_name,index=1)
 
 # return data by key defined
 storage.get(storage_name,key="")
+}
+
 }

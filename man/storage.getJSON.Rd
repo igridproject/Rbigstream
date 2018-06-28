@@ -23,6 +23,7 @@ read data from Bigstream storage via Bigstream storage API
 This command support on Bigstream version 1.2 or more only
 }
 \examples{
+\dontrun{
 host <- "http://sample.bigstream.io"
 storage_name <- "sample.sensordata"
 token <- "token"
@@ -39,4 +40,5 @@ storage.getJSON(storage_name,index=1)
 
 # return data by key defined
 storage.getJSON(storage_name,key="")
+}
 }

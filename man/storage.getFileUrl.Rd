@@ -5,7 +5,7 @@
 \title{Get data object from storage}
 \usage{
 storage.getFileUrl(storage_name, id = NULL, index = NULL, key = NULL,
-  type = "")
+  type = "dat")
 }
 \arguments{
 \item{storage_name}{storage name}
@@ -26,6 +26,7 @@ read data from Bigstream storage via Bigstream storage API
 This command support on Bigstream version 1.2 or more only
 }
 \examples{
+\dontrun{
 host <- "http://sample.bigstream.io"
 storage_name <- "sample.sensordata"
 token <- "token"
@@ -34,5 +35,5 @@ bs.connect(host, token)
 #return lastest data as csv
 url <- storage.getFileUrl(storage_name)
 read.csv(url, header=FALSE, sep="|")
-
+}
 }

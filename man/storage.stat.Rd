@@ -16,9 +16,11 @@ Storage information
 Get storage information
 }
 \examples{
+\dontrun{
 host <- "http://sample.bigstream.io"
 storage_name <- "sample.sensordata"
 token <- "token"
 bs.connect(host, token)
 storage.stat(storage_name)
+}
 }
